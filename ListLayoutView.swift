@@ -13,9 +13,7 @@ struct ListLayoutView: View {
     var body: some View {
         LazyVStack {
             ForEach(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission)
-                } label: {
+                NavigationLink(value: mission) {
                     HStack {
                         VStack(alignment: .leading) {
                             Text(mission.displayName)
@@ -41,6 +39,9 @@ struct ListLayoutView: View {
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(.lightBackground)
+                    }
+                    .navigationDestination(for: Mission.self) { selection in
+                        MissionView(mission: selection)
                     }
                 }
             }

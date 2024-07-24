@@ -9,14 +9,12 @@ import SwiftUI
 
 struct GridLayoutView: View {
     let columns = [ GridItem(.adaptive(minimum: 150)) ]
-    let missions: [Mission]
+    @State var missions: [Mission]
     
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission)
-                } label: {
+                NavigationLink(value: mission) {
                     VStack {
                         Image(mission.imageName)
                             .resizable()
@@ -40,6 +38,9 @@ struct GridLayoutView: View {
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(.lightBackground)
+                    }
+                    .navigationDestination(for: Mission.self) { selection in
+                        MissionView(mission: selection)
                     }
                 }
             }
