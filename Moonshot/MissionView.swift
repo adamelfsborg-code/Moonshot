@@ -19,6 +19,8 @@ struct MissionView: View {
                     .containerRelativeFrame(.horizontal) { width, axis in
                         width * 0.6
                     }
+                    .accessibilityHidden(true)
+                
                 Text(mission.formattedLanchDate)
                     .font(.headline.bold())
                     .foregroundStyle(.gray)
@@ -38,7 +40,7 @@ struct MissionView: View {
                     Text("Crew")
                         .font(.title.bold())
                         .padding(.bottom, 5)
-                    
+                        .accessibilityHidden(true)
                     
                 }.padding(.horizontal)
                 

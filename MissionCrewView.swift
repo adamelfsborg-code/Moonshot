@@ -25,11 +25,14 @@ struct MissionCrewView: View {
                                 Capsule()
                                     .strokeBorder(.white, lineWidth: 1)
                             )
+                            .accessibilityRemoveTraits(.isImage)
+                            .accessibilityLabel("Image of \(member.astronaut.name)")
                         
                         VStack(alignment: .leading) {
                             Text(member.astronaut.name)
                                 .foregroundStyle(.white)
                                 .font(.headline)
+                                .accessibilityHidden(true)
                             
                             Text(member.role)
                                 .foregroundStyle(.gray)
